@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   #-------Merchant-------------------
+  get '/merchants/:id/dashboard', to: 'merchants#dashboard'
   resources :merchants do
     resources :invoices
     resources :items do

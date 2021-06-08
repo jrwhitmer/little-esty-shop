@@ -17,7 +17,7 @@ RSpec.describe Item, type: :model do
   before :each do
     @frank = Customer.create!(first_name: 'Frank', last_name: 'Enstein')
 
-    @invoice_1 = @frank.invoices.create!(status: 2)
+    @invoice_1 = @frank.invoices.create!(status: 2, created_at: Time.new) #LOOK AT RUBY TIME DOCS
     @invoice_2 = @frank.invoices.create!(status: 2)
     @invoice_3 = @frank.invoices.create!(status: 2)
 
@@ -81,9 +81,14 @@ RSpec.describe Item, type: :model do
 
   describe 'instance methods' do
     describe '#total revenue top date' do
+      # MAKE AN EARLIER INVOICE AND MAKE SURE THAT THE MOST RECNET IS RETURNED.
       it 'can give the date with the most sales for each of the most popluar items' do
         expect(@item_4.items_top_selling_days).to eq("#{@item_4.created_at.strftime("%m/%d/%Y")}")
         expect(@item_4.items_top_selling_days).to_not eq("#{@item_4.created_at}")
+      end
+
+      it 'returns most recent if there is a tie' do
+
       end
     end
   end
