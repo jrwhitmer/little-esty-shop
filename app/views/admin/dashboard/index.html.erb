@@ -19,6 +19,7 @@
   <section id="incomplete-invoices-<%= invoice.id %>">
     <ol>
       <%= link_to "Invoice #{invoice.id}", admin_invoice_path(:admin, invoice.id) %>
+      <%= invoice.created_at.created_at.strftime("%A, %B %d, %Y "%>
     </ol>
   </section>
 <% end %>

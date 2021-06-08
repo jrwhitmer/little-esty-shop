@@ -31,9 +31,9 @@ RSpec.describe Invoice, type: :model do
 
     @customer1 = Customer.create!(first_name: "Dr.", last_name: "Pepper")
 
-    @invoice1 = @customer1.invoices.create!(status: 2)
-    @invoice2 = @customer1.invoices.create!(status: 2)
-    @invoice3 = @customer1.invoices.create!(status: 2)
+    @invoice1 = @customer1.invoices.create!(status: 2, created_at: "2012-03-21 09:54:09")
+    @invoice2 = @customer1.invoices.create!(status: 2, created_at: "2012-04-21 09:54:09")
+    @invoice3 = @customer1.invoices.create!(status: 2, created_at: "2012-05-21 09:54:09")
 
     @transaction1 = @invoice1.transactions.create!(result: 1, credit_card_number: 4654405418249632)
     @transaction2 = @invoice1.transactions.create!(result: 1, credit_card_number: 4580251236515201)
@@ -61,17 +61,18 @@ RSpec.describe Invoice, type: :model do
     @invoice_item_2 = InvoiceItem.create!(quantity: 5, unit_price: 16.3, status: 1, invoice_id: @invoice_1.id, item_id: @item_2.id)
     
     # Gunnar's Tests
-    @customer1 = Customer.create!(first_name: "Bobby", last_name: "Mendez")
-    @invoice1 = Invoice.create!(status: 1, customer_id: @customer1.id)
-    @merchant1 = Merchant.create!(name: "Nike")
-    @item1 = Item.create!(name: "Kobe zoom 5's", description: "Best shoe in basketball hands down!", unit_price: 12500, merchant_id: @merchant1.id)
-    @invoice_item1 = InvoiceItem.create!(quantity: 2, unit_price: 25000, status: 0, invoice_id: @invoice1.id, item_id: @item1.id)
+    @customer9 = Customer.create!(first_name: "Bobby", last_name: "Mendez")
+    @invoice9 = Invoice.create!(status: 1, customer_id: @customer1.id)
+    @merchant9 = Merchant.create!(name: "Nike")
+    @item9 = Item.create!(name: "Kobe zoom 5's", description: "Best shoe in basketball hands down!", unit_price: 12500, merchant_id: @merchant1.id)
+    @invoice_item9 = InvoiceItem.create!(quantity: 2, unit_price: 25000, status: 0, invoice_id: @invoice1.id, item_id: @item1.id)
   end
 
   describe 'instance methods' do
     describe '#unshipped' do
       it 'returns all invoices that are unshipped' do
-        expected = [@invoice1, @invoice2]
+        require "pry"; binding.pry
+        expected = [@invoice2, @invoice1]
 
         expect(Invoice.unshipped).to eq(expected)
       end
@@ -86,7 +87,7 @@ RSpec.describe Invoice, type: :model do
     describe '#total_revenue' do
       it 'total revenue for an invoice' do
         
-        expect(@invoice1.total_revenue).to eq(50000)
+        expect(@invoice9.total_revenue).to eq(50000)
       end
     end
   end

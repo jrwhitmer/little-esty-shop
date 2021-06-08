@@ -8,12 +8,12 @@ RSpec.describe 'Admin Dashboard Index Page' do
     @customer4 = Customer.create!(first_name: "Michael", last_name: "Jordan")
     @customer5 = Customer.create!(first_name: "Lebron", last_name: "James")
     @customer6 = Customer.create!(first_name: "Mike", last_name: "Vick")
-    @invoice1 = @customer1.invoices.create!(status: 2)
-    @invoice2 = @customer2.invoices.create!(status: 2)
-    @invoice3 = @customer3.invoices.create!(status: 2)
-    @invoice4 = @customer4.invoices.create!(status: 2)
-    @invoice5 = @customer5.invoices.create!(status: 2)
-    @invoice6 = @customer6.invoices.create!(status: 2)
+    @invoice1 = @customer1.invoices.create!(status: 2, created_at: "2012-03-22 09:54:09")
+    @invoice2 = @customer2.invoices.create!(status: 2, created_at: "2012-03-19 09:54:09")
+    @invoice3 = @customer3.invoices.create!(status: 2, created_at: "2012-03-25 09:54:09")
+    @invoice4 = @customer4.invoices.create!(status: 2, created_at: "2012-03-24 09:54:09")
+    @invoice5 = @customer5.invoices.create!(status: 2, created_at: "2012-03-23 09:54:09")
+    @invoice6 = @customer6.invoices.create!(status: 2, created_at: "2012-03-21 09:54:09")
 
     # customer 1 - third
     @transaction1 = @invoice1.transactions.create!(result: 1, credit_card_number: 4654405418249632)
